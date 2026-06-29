@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+# Builds the React client and outputs the files
+  client-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    volumes:
+      - client_build:/app/dist
+# Express backend. serves the API and built React client hopefully
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "3001:3001"
+    volumes:
+      - scif_data:/app/server/data
+      - client_build:/app/server/public:ro
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - client-build
+    restart: unless-stopped
+
+volumes:
+  scif_data:
+  client_build:
