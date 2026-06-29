@@ -1,0 +1,13 @@
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Install client dependencies
+COPY client/package*.json ./
+RUN npm install
+
+# Copy and build
+COPY client/ ./
+RUN npm run build
+
+# Output: /app/dis - copied into the server/public directory by docker-compose
