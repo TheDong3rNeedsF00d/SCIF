@@ -1,0 +1,31 @@
+# Dependencies for this project
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment shit
+.env
+server/.env
+
+# Build it output
+client/dist/
+server/public/
+
+# SQLite database
+server/data/
+*.db
+*.db-shm
+*.db-wal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor of choice
+.vscode/
+.idea/
+*.swp
+
+# LogsNOMNOM
+*.log
+npm-debug.log*
